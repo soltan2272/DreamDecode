@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Dream\Entities\" />
+    <Folder Include="Dream\Interfaces\" />
+    <Folder Include="Dream\Enums\" />
+    <Folder Include="Dream\ValueObjects\" />
+    <Folder Include="Interpretation\Entities\" />
+    <Folder Include="Interpretation\Enums\" />
+    <Folder Include="Interpretation\Interfaces\" />
+    <Folder Include="Interpretation\ValueObjects\" />
+    <Folder Include="Payment\Entities\" />
+    <Folder Include="Payment\Enums\" />
+    <Folder Include="Payment\Interfaces\" />
+    <Folder Include="Payment\ValueObjects\" />
+    <Folder Include="User\Entities\" />
+    <Folder Include="User\Enums\" />
+    <Folder Include="User\Interfaces\" />
+    <Folder Include="User\ValueObjects\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Dream\Interfaces\" />
+    <Folder Include="Dream\DTOs\" />
+    <Folder Include="Dream\Mappings\" />
+    <Folder Include="Dream\Services\" />
+    <Folder Include="Interpretation\DTOs\" />
+    <Folder Include="Interpretation\Interfaces\" />
+    <Folder Include="Interpretation\Mappings\" />
+    <Folder Include="Interpretation\Services\" />
+    <Folder Include="Payment\DTOs\" />
+    <Folder Include="Payment\Interfaces\" />
+    <Folder Include="Payment\Mappings\" />
+    <Folder Include="Payment\Services\" />
+    <Folder Include="User\DTOs\" />
+    <Folder Include="User\Interfaces\" />
+    <Folder Include="User\Mappings\" />
+    <Folder Include="User\Services\" />
+  </ItemGroup>
+
+</Project>

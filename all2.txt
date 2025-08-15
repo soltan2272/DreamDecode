@@ -1,0 +1,695 @@
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode\Program.cs
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+
+builder.Services.AddControllers();
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+var app = builder.Build();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.MapOpenApi();
+}
+
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.Run();
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Dream\DTOs\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Dream\Interfaces\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Dream\Mappings\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Dream\Services\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Interpretation\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Interpretation\DTOs\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Interpretation\Interfaces\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Interpretation\Mappings\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Interpretation\Services\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Payment\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Payment\DTOs\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Payment\Interfaces\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Payment\Mappings\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\Payment\Services\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\User\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\User\DTOs\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\User\Interfaces\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\User\Mappings\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Application\User\Services\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Dream\Entities\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Dream\Enums\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Dream\Interfaces\Repository\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Dream\ValueObjects\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Interpretation\Entities\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Interpretation\Enums\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Interpretation\Interfaces\Repository\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Interpretation\ValueObjects\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Payment\Entities\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Payment\Enums\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Payment\Interfaces\Repository\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\Payment\ValueObjects\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\User\Entities\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\User\Enums\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\User\Interfaces\Repository\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Domain\User\ValueObjects\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Infrastructure\Data\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+
+// File: D:\docs\test\DreamDecode\DreamDecode\DreamDecode.Infrastructure\Repositories\test.cs
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DreamDecode.Application.Dream.DTOs
+{
+    internal class test
+    {
+    }
+}
+
+
+--------------------------------------------------------------------------------
+

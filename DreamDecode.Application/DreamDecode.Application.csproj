@@ -37,10 +37,12 @@
     <Folder Include="Payment\Interfaces\" />
     <Folder Include="Payment\Mappings\" />
     <Folder Include="Payment\Services\" />
-    <Folder Include="User\DTOs\" />
-    <Folder Include="User\Interfaces\" />
     <Folder Include="User\Mappings\" />
     <Folder Include="User\Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DreamDecode.Domain\DreamDecode.Domain.csproj" />
   </ItemGroup>
 
 </Project>

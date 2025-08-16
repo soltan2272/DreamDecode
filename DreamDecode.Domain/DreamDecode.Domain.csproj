@@ -37,8 +37,6 @@
     <Folder Include="Payment\Enums\" />
     <Folder Include="Payment\Interfaces\Repository\" />
     <Folder Include="Payment\ValueObjects\" />
-    <Folder Include="User\Entities\" />
-    <Folder Include="User\Enums\" />
     <Folder Include="User\Interfaces\Repository\" />
     <Folder Include="User\ValueObjects\" />
   </ItemGroup>

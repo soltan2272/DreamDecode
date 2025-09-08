@@ -3,6 +3,7 @@ using DreamDecode.Domain.User.Entities;
 using DreamDecode.Domain.User.Enums;
 using DreamDecode.Infrastructure;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,22 +16,24 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("AdminOnly", p => p.RequireRole(Roles.Admin.ToString()));
     options.AddPolicy("UserOnly", p => p.RequireRole(Roles.User.ToString()));
 });
-builder.Services.AddOpenApi();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "DreamDecode API",
+        Version = "v1",
+        Description = "API for DreamDecode application"
+    });
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
-}
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-
-
-    c.RoutePrefix = string.Empty;
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "DreamDecode API V1");
+    c.RoutePrefix = string.Empty; // Set Swagger UI at the root
 });
 app.UseHttpsRedirection();
 

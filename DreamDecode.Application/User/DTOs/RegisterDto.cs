@@ -16,7 +16,7 @@ namespace DreamDecode.Application.User.DTOs
         [Required, RegularExpression(@"^(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z0-9]).{7,}$",
             ErrorMessage = "Password must be 7+ chars, include uppercase, number, special.")]
         public string Password { get; set; } = "";
-        public Roles Role { get; set; } = Roles.User;  // default
+        public string Role { get; set; }  
     }
 
 }

@@ -23,10 +23,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="9.0.4" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\DreamDecode.Application\DreamDecode.Application.csproj" />
+    <ProjectReference Include="..\DreamDecode.Infrastructure\DreamDecode.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

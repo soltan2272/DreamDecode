@@ -38,7 +38,6 @@
     <Folder Include="Payment\Mappings\" />
     <Folder Include="Payment\Services\" />
     <Folder Include="User\Mappings\" />
-    <Folder Include="User\Services\" />
   </ItemGroup>
 
   <ItemGroup>

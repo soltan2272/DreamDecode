@@ -9,7 +9,7 @@ namespace DreamDecode.Domain.User.Entities
 {
     public class ApplicationUser:IdentityUser
     {
-        public string Fname { get; set; }
-        public string Lname { get; set; }
+        public string FullName { get; set; }
+       
     }
 }

@@ -11,10 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration); // from Infrastructure
 builder.Services.AddApplication(); // from Application
 builder.Services.AddControllers();
+
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", p => p.RequireRole(Roles.Admin.ToString()));
     options.AddPolicy("UserOnly", p => p.RequireRole(Roles.User.ToString()));
+    options.AddPolicy("ManageAdmins", policy =>
+       policy.RequireRole(Roles.Admin.ToString())
+             .RequireClaim("CanManageAdmins", "true"));
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
@@ -24,6 +29,30 @@ builder.Services.AddSwaggerGen(c =>
         Title = "DreamDecode API",
         Version = "v1",
         Description = "API for DreamDecode application"
+    });
+
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "JWT Authorization header using the Bearer scheme. Example: \"Bearer {token}\"",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            new List<string>()
+        }
     });
 });
 
@@ -36,6 +65,8 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = string.Empty; // Set Swagger UI at the root
 });
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 

@@ -30,9 +30,7 @@
     <Folder Include="Dream\Mappings\" />
     <Folder Include="Dream\Services\" />
     <Folder Include="Interpretation\DTOs\" />
-    <Folder Include="Interpretation\Interfaces\" />
     <Folder Include="Interpretation\Mappings\" />
-    <Folder Include="Interpretation\Services\" />
     <Folder Include="Payment\DTOs\" />
     <Folder Include="Payment\Interfaces\" />
     <Folder Include="Payment\Mappings\" />

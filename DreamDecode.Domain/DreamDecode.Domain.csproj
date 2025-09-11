@@ -25,7 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dream\Entities\" />
     <Folder Include="Dream\Enums\" />
     <Folder Include="Dream\Interfaces\Repository\" />
     <Folder Include="Dream\ValueObjects\" />

@@ -43,7 +43,7 @@ namespace DreamDecode.Application.User.Services
             var user = new ApplicationUser
             {
                 Email = dto.Email,
-                UserName = dto.FullName,
+                UserName = dto.Email,
                 FullName = dto.FullName
             };
 

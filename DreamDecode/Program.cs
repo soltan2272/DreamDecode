@@ -1,26 +1,56 @@
+using System.Security.Claims;
+using System.Text;
 using DreamDecode.Application;
 using DreamDecode.Domain.User.Entities;
 using DreamDecode.Domain.User.Enums;
 using DreamDecode.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-builder.Services.AddInfrastructure(builder.Configuration); // from Infrastructure
-builder.Services.AddApplication(); // from Application
+builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 builder.Services.AddControllers();
 
+// JWT Configuration with debugging
+var jwtKey = builder.Configuration["Jwt:Key"];
+var jwtIssuer = builder.Configuration["Jwt:Issuer"];
+var jwtAudience = builder.Configuration["Jwt:Audience"];
 
-builder.Services.AddAuthorization(options =>
+
+
+var key = Encoding.UTF8.GetBytes(jwtKey);
+
+builder.Services.AddAuthentication(options =>
 {
-    options.AddPolicy("AdminOnly", p => p.RequireRole(Roles.Admin.ToString()));
-    options.AddPolicy("UserOnly", p => p.RequireRole(Roles.User.ToString()));
-    options.AddPolicy("ManageAdmins", policy =>
-       policy.RequireRole(Roles.Admin.ToString())
-             .RequireClaim("CanManageAdmins", "true"));
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false; // Set to true in production
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtIssuer,
+        ValidAudience = jwtAudience,
+        IssuerSigningKey = new SymmetricSecurityKey(key),
+        RoleClaimType = ClaimTypes.Role,
+        NameClaimType = ClaimTypes.Name,
+        ClockSkew = TimeSpan.Zero
+    };
+
+
 });
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -51,31 +81,31 @@ builder.Services.AddSwaggerGen(c =>
                     Id = "Bearer"
                 }
             },
-            new List<string>()
+            Array.Empty<string>()
         }
     });
 });
 
 var app = builder.Build();
 
+
+
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "DreamDecode API V1");
-    c.RoutePrefix = string.Empty; // Set Swagger UI at the root
+    c.RoutePrefix = string.Empty;
 });
+
 app.UseHttpsRedirection();
-
 app.UseAuthentication();
-
 app.UseAuthorization();
-
 app.MapControllers();
-await SeedDefaultsAsync(app.Services); // seed roles & default admin
+
+await SeedDefaultsAsync(app.Services);
 
 app.Run();
 
-// local method: seed roles & an admin
 static async Task SeedDefaultsAsync(IServiceProvider sp)
 {
     using var scope = sp.CreateScope();
@@ -83,14 +113,38 @@ static async Task SeedDefaultsAsync(IServiceProvider sp)
     var users = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
 
     foreach (var r in new[] { Roles.Admin.ToString(), Roles.User.ToString() })
-        if (!await roles.RoleExistsAsync(r)) await roles.CreateAsync(new IdentityRole(r));
+    {
+        if (!await roles.RoleExistsAsync(r))
+        {
+            await roles.CreateAsync(new IdentityRole(r));
+        }
+    }
 
     var adminEmail = "admin@dreams.com";
     var admin = await users.FindByEmailAsync(adminEmail);
     if (admin is null)
     {
-        admin = new ApplicationUser { Email = adminEmail, UserName = adminEmail, FullName = "Dreams Admin" };
-        await users.CreateAsync(admin, "Admin#12345");
-        await users.AddToRoleAsync(admin, Roles.Admin.ToString());
+        admin = new ApplicationUser
+        {
+            Email = adminEmail,
+            UserName = adminEmail,
+            FullName = "Dreams Admin"
+        };
+
+        var createResult = await users.CreateAsync(admin, "Admin#12345");
+        if (createResult.Succeeded)
+        {
+            var roleResult = await users.AddToRoleAsync(admin, Roles.Admin.ToString());
+        }
+   
+    }
+    else
+    {
+        var userRoles = await users.GetRolesAsync(admin);
+
+        if (!userRoles.Contains(Roles.Admin.ToString()))
+        {
+            await users.AddToRoleAsync(admin, Roles.Admin.ToString());
+        }
     }
 }

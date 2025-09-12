@@ -1,10 +1,14 @@
 // File: D:\docs\test\Decode\DreamDecode\DreamDecode\Program.cs
 
+using System.Security.Claims;
+using System.Text;
 using DreamDecode.Application;
 using DreamDecode.Domain.User.Entities;
 using DreamDecode.Domain.User.Enums;
 using DreamDecode.Infrastructure;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +17,23 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration); // from Infrastructure
 builder.Services.AddApplication(); // from Application
 builder.Services.AddControllers();
+
+var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!);
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(o =>
+    {
+        o.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(key),
+            RoleClaimType=ClaimTypes.Role
+        };
+    });
 
 
 
@@ -39,7 +60,18 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
+app.Use(async (context, next) =>
+{
+    if (context.User.Identity.IsAuthenticated)
+    {
+        Console.WriteLine("User claims:");
+        foreach (var claim in context.User.Claims)
+        {
+            Console.WriteLine($"{claim.Type}: {claim.Value}");
+        }
+    }
+    await next();
+});
 app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
@@ -104,10 +136,11 @@ namespace DreamDecode.API.Controllers
         }
 
         [HttpPost("add")]
-        [Authorize]
         public async Task<IActionResult> AddAdmin(RegisterDto dto)
         {
-            var result = await _adminService.AddAdminAsync(dto);
+            var test = User.Identity.IsAuthenticated;
+            var claims = User.Claims.Select(c => new { c.Type, c.Value }).ToList();
+          var result = await _adminService.AddAdminAsync(dto);
             return Ok(result);
         }
 
@@ -813,6 +846,7 @@ namespace DreamDecode.Domain.User.Factory
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using DreamDecode.Domain.User.Entities;
@@ -848,22 +882,7 @@ namespace DreamDecode.Infrastructure
 
             services.AddScoped<IJwtFactory, JwtTokenFactory>();
            
-            var key = Encoding.UTF8.GetBytes(cfg["Jwt:Key"]!);
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(o =>
-                {
-                    o.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = true,
-                        ValidateAudience = true,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        ValidIssuer = cfg["Jwt:Issuer"],
-                        ValidAudience = cfg["Jwt:Audience"],
-                        IssuerSigningKey = new SymmetricSecurityKey(key),
-                        RoleClaimType= "role"
-                    };
-                });
+
 
             return services;
         }

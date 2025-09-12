@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DreamDecode.Application.User.Services
 {
-    
     public class AuthService : IAuthService
     {
         private readonly UserManager<ApplicationUser> _users;
@@ -27,7 +26,7 @@ namespace DreamDecode.Application.User.Services
         {
             _users = users;
             _signIn = signIn;
-            _roles = roles; 
+            _roles = roles;
             _jwt = jwt;
         }
 
@@ -59,21 +58,34 @@ namespace DreamDecode.Application.User.Services
 
         public async Task<AuthResultDto> LoginAsync(LoginDto dto)
         {
+
             var user = await _users.FindByEmailAsync(dto.Email);
             if (user == null)
+            {
                 return new AuthResultDto { Succeeded = false, Errors = new[] { "Invalid credentials." } };
+            }
+
 
             var ok = await _signIn.CheckPasswordSignInAsync(user, dto.Password, false);
             if (!ok.Succeeded)
+            {
                 return new AuthResultDto { Succeeded = false, Errors = new[] { "Invalid credentials." } };
+            }
+
 
             var roles = await _users.GetRolesAsync(user);
+
             var role = roles.FirstOrDefault();
-                Console.WriteLine("No role found for user");
+            if (string.IsNullOrEmpty(role))
+            {
+                return new AuthResultDto { Succeeded = false, Errors = new[] { "User has no assigned role." } };
+            }
+
+            Console.WriteLine($"Using role: {role}");
 
             var token = _jwt.Create(user, role);
+
             return new AuthResultDto { Succeeded = true, Token = token, Role = role };
         }
     }
-
 }

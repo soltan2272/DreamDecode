@@ -69,6 +69,7 @@ namespace DreamDecode.Application.User.Services
 
             var roles = await _users.GetRolesAsync(user);
             var role = roles.FirstOrDefault();
+                Console.WriteLine("No role found for user");
 
             var token = _jwt.Create(user, role);
             return new AuthResultDto { Succeeded = true, Token = token, Role = role };

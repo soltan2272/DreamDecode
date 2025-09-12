@@ -55,7 +55,7 @@ namespace DreamDecode.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Dreams");
+                    b.ToTable("Dreams", (string)null);
                 });
 
             modelBuilder.Entity("DreamDecode.Domain.User.Entities.ApplicationUser", b =>

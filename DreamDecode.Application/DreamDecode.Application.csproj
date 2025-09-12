@@ -25,10 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Dream\DTOs\" />
-    <Folder Include="Dream\Interfaces\" />
     <Folder Include="Dream\Mappings\" />
-    <Folder Include="Dream\Services\" />
     <Folder Include="Interpretation\DTOs\" />
     <Folder Include="Interpretation\Mappings\" />
     <Folder Include="Payment\DTOs\" />
@@ -40,6 +37,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DreamDecode.Domain\DreamDecode.Domain.csproj" />
+    <ProjectReference Include="..\DreamDecode.Infrastructure\DreamDecode.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

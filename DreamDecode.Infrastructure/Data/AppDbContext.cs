@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DreamDecode.Domain.Dream.Entities;
+
+using DreamDecode.Domain.Interpretation.Entities.DreamDecode.Domain.Entities;
 using DreamDecode.Domain.User.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -15,7 +17,8 @@ namespace DreamDecode.Infrastructure.Data
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<DreamEntity> Dreams { get; set; } 
+        public DbSet<DreamEntity> Dreams { get; set; }
+        public DbSet<InterpretationEntity> Interpretations { get; set; }
 
     }
 }

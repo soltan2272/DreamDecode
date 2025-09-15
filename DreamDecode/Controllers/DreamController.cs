@@ -22,6 +22,7 @@ namespace DreamDecode.API.Controllers
            
         }
 
+        [Authorize(Roles = "User")]
         [HttpPost("add")]
         public async Task<IActionResult> Add(DreamCreateDto dto)
         {
@@ -34,6 +35,7 @@ namespace DreamDecode.API.Controllers
             return Ok(dream);
         }
 
+        [Authorize(Roles = "User")]
         [HttpGet("my-dreams")]
         public async Task<IActionResult> GetUserDreams()
         {

@@ -14,5 +14,6 @@ namespace DreamDecode.Application.Dream.DTOs
         public DateTime SubmittedAt { get; set; }
         public bool IsInterpreted { get; set; }
         public bool IsPaid { get; set; }
+        public string? InterpretationText { get; set; }
     }
 }

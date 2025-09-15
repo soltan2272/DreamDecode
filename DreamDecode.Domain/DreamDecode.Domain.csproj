@@ -28,7 +28,6 @@
     <Folder Include="Dream\Enums\" />
     <Folder Include="Dream\Interfaces\Repository\" />
     <Folder Include="Dream\ValueObjects\" />
-    <Folder Include="Interpretation\Entities\" />
     <Folder Include="Interpretation\Enums\" />
     <Folder Include="Interpretation\Interfaces\Repository\" />
     <Folder Include="Interpretation\ValueObjects\" />

@@ -1,11 +1,14 @@
 using System.Security.Claims;
 using System.Text;
 using DreamDecode.Application;
+using DreamDecode.Application.Dream.Mappings;
+using DreamDecode.Application.Interpretation.Mappings;
 using DreamDecode.Domain.User.Entities;
 using DreamDecode.Domain.User.Enums;
 using DreamDecode.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 
@@ -14,6 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(
+    typeof(DreamProfile).Assembly,
+    typeof(InterpretationProfile).Assembly
+);
+
 
 // JWT Configuration with debugging
 var jwtKey = builder.Configuration["Jwt:Key"];
@@ -87,7 +95,6 @@ builder.Services.AddSwaggerGen(c =>
 });
 
 var app = builder.Build();
-
 
 
 app.UseSwagger();

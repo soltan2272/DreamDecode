@@ -11,16 +11,15 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using AutoMapper;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddControllers();
-builder.Services.AddAutoMapper(
-    typeof(DreamProfile).Assembly,
-    typeof(InterpretationProfile).Assembly
-);
+builder.Services.AddAutoMapper(cfg => { }, typeof(DreamProfile).Assembly);
 
 
 // JWT Configuration with debugging

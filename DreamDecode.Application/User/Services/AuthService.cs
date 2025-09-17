@@ -36,9 +36,7 @@ namespace DreamDecode.Application.User.Services
             if (exists != null)
                 return new AuthResultDto { Succeeded = false, Errors = new[] { "Email already registered." } };
 
-            if (!await _roles.RoleExistsAsync(dto.Role))
-                await _roles.CreateAsync(new IdentityRole(dto.Role));
-
+           
             var user = new ApplicationUser
             {
                 Email = dto.Email,
@@ -50,10 +48,11 @@ namespace DreamDecode.Application.User.Services
             if (!create.Succeeded)
                 return new AuthResultDto { Succeeded = false, Errors = create.Errors.Select(e => e.Description) };
 
-            await _users.AddToRoleAsync(user, dto.Role);
+            await _users.AddToRoleAsync(user, Roles.User.ToString());
+            
 
-            var token = _jwt.Create(user, dto.Role);
-            return new AuthResultDto { Succeeded = true, Token = token, Role = dto.Role };
+            var token = _jwt.Create(user, Roles.User.ToString());
+            return new AuthResultDto { Succeeded = true, Token = token, Role = Roles.User.ToString() };
         }
 
         public async Task<AuthResultDto> LoginAsync(LoginDto dto)

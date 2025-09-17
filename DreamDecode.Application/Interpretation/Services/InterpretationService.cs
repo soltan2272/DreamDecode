@@ -51,13 +51,18 @@ namespace DreamDecode.Application.Interpretation.Services
 
             // Mark Dream as Interpreted
             var dream = await _context.Dreams.FindAsync(dto.DreamId);
-            if (dream != null)
+            if (dream == null)
+            {
+                return "Dream Not Found";
+            }
+            else
             {
                 dream.IsInterpreted = true;
+                await _context.SaveChangesAsync();
+                return "Interpretation Added Successfully";
+
             }
 
-            await _context.SaveChangesAsync();
-            return "Interpretation Added Successfully";
         }
 
         // 3) My Interpretations

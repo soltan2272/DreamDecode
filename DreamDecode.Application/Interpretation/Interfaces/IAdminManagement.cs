@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DreamDecode.Application.User.DTOs;
+using DreamDecode.Domain.User.Entities;
 
 namespace DreamDecode.Application.Interpretation.Interfaces
 {
@@ -11,6 +12,7 @@ namespace DreamDecode.Application.Interpretation.Interfaces
     {
         Task<string> AddAdminAsync(RegisterDto dto);
         Task<string> DeleteAdminAsync(string email);
+        Task<List<ApplicationUser>> GetAllAdminsAsync();
     }
 
 }

@@ -20,6 +20,19 @@ namespace DreamDecode.API.Controllers
             _adminService = adminService;
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("all")]
+        public async Task<IActionResult> All() {
+            var admins =await _adminService.GetAllAdminsAsync();
+            var result = admins.Select(a => new
+            {
+                a.Id,
+                a.Email,
+                a.UserName
+            });
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AddAdmin(RegisterDto dto)

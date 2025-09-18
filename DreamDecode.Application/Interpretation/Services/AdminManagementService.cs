@@ -59,6 +59,20 @@ namespace DreamDecode.Application.Interpretation.Services
             await _users.DeleteAsync(user);
             return "Admin deleted successfully.";
         }
+
+        public async Task<List<ApplicationUser>> GetAllAdminsAsync()
+        {
+           var users = _users.Users.ToList();
+            var admins = new List<ApplicationUser>();
+            foreach (var user in users)
+            {
+                if(await _users.IsInRoleAsync(user, Roles.Admin.ToString()))
+                {
+                    admins.Add(user);
+                }
+            }
+            return admins;
+        }
     }
 
 }

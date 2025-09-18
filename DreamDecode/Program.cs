@@ -21,13 +21,20 @@ builder.Services.AddApplication();
 builder.Services.AddControllers();
 builder.Services.AddAutoMapper(cfg => { }, typeof(DreamProfile).Assembly);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngular", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200") 
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials(); // Add this if you're using cookies or authentication
+    });
+});
 
-// JWT Configuration with debugging
 var jwtKey = builder.Configuration["Jwt:Key"];
 var jwtIssuer = builder.Configuration["Jwt:Issuer"];
 var jwtAudience = builder.Configuration["Jwt:Audience"];
-
-
 
 var key = Encoding.UTF8.GetBytes(jwtKey);
 
@@ -54,8 +61,6 @@ builder.Services.AddAuthentication(options =>
         NameClaimType = ClaimTypes.Name,
         ClockSkew = TimeSpan.Zero
     };
-
-
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -93,17 +98,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// CORS
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowAngular", policy =>
-    {
-        policy.WithOrigins("http://localhost:4200") 
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-    });
-});
-
 var app = builder.Build();
 
 
@@ -115,9 +109,12 @@ app.UseSwaggerUI(c =>
 });
 
 app.UseHttpsRedirection();
+
 app.UseCors("AllowAngular");
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllers();
 
 await SeedDefaultsAsync(app.Services);

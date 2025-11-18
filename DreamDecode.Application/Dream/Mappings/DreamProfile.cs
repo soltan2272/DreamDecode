@@ -14,7 +14,12 @@ namespace DreamDecode.Application.Dream.Mappings
         public DreamProfile()
         {
             // CreateMap<Source, Destination>();
-            CreateMap<DreamEntity,PendingDreamsDto>();
+            CreateMap<DreamEntity,PendingDreamsDto>()
+                 .ForMember(dest => dest.DreamTitle, opt => opt.MapFrom(src => src.Title))
+    .ForMember(dest => dest.DreamDescription, opt => opt.MapFrom(src => src.Description))
+    .ForMember(dest => dest.isInterpreted, opt => opt.MapFrom(src => src.IsInterpreted))
+    .ForMember(dest => dest.isPaid, opt => opt.MapFrom(src => src.IsPaid));
+            ;
 
 
         }

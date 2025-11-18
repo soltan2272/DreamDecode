@@ -8,6 +8,7 @@ namespace DreamDecode.Application.Dream.DTOs
 {
     public class PendingDreamsDto
     {
+        public int DreamId { get; set; }
         public string UserFullName { get; set; }
         public string  Email { get; set; }
         public string DreamTitle { get; set; }

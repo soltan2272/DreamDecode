@@ -22,6 +22,8 @@ namespace DreamDecode.Domain.Dream.Entities
         public DateTime SubmittedAt { get; set; } = DateTime.UtcNow; // Auto-set
 
         public bool IsInterpreted { get; set; } = false; // Default false
+
+        public string? InterpretationText { get; set; }
         public bool IsPaid { get; set; } = false;        // Default false
     }
 }

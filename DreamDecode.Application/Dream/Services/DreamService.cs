@@ -65,6 +65,7 @@ namespace DreamDecode.Application.Dream.Services
                     Description = d.Description,
                     SubmittedAt = d.SubmittedAt,
                     IsInterpreted = d.IsInterpreted,
+                    InterpretationText=d.InterpretationText,
                     IsPaid = d.IsPaid
                 })
                 .ToListAsync();

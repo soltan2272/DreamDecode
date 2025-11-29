@@ -58,6 +58,7 @@ namespace DreamDecode.Application.Interpretation.Services
             else
             {
                 dream.IsInterpreted = true;
+                dream.InterpretationText = interpretation.InterpretationText;
                 await _context.SaveChangesAsync();
                 return "Interpretation Added Successfully";
 
